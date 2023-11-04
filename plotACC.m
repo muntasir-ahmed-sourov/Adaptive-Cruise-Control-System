@@ -31,19 +31,19 @@ function plotACC(logsout, default_safeD, timeGap, setVel, acc_plot, vel_plot, di
     plot(dist_plot, time, safeD_data, '.', 'Color', 'b', 'MarkerSize', 5);
     %plot(plotAxes, time, setVel_data, '.', 'Color', 'g', 'MarkerSize', 5);
     grid(acc_plot, 'on');
-    ylim(acc_plot, [-20, 20]); % y-axis limit from -10 to 10
+    ylim(acc_plot, [-3, 2]); % y-axis limit from -10 to 10
     legend(acc_plot, 'ego', 'lead', 'set', 'location', 'SouthEast');
     title(acc_plot, 'Acceleration');
     xlabel(acc_plot, 'time (sec)');
     ylabel(acc_plot, '$m/s^2$', 'Interpreter', 'latex');
     grid(vel_plot, 'on');
-    ylim(vel_plot, [0, 100]); % y-axis limit from 0 to 100
+    ylim(vel_plot, [0, 35]); % y-axis limit from 0 to 100
     legend(vel_plot, 'ego', 'lead', 'set', 'location', 'SouthEast');
     title(vel_plot, 'Velocity');
     xlabel(vel_plot, 'time (sec)');
     ylabel(vel_plot, '$m/s$', 'Interpreter', 'latex');
     grid(dist_plot, 'on');
-    ylim(dist_plot, [0, 100]); % y-axis limit from 0 to 100
+    ylim(dist_plot, [20, 80]); % y-axis limit from 0 to 100
     legend(dist_plot, 'ego', 'lead', 'set', 'location', 'SouthEast');
     title(dist_plot, 'Distance');
     xlabel(dist_plot, 'time (sec)');

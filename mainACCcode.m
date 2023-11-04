@@ -3,14 +3,14 @@ function main
     clearvars;
     default_safeD = 15;
     model = 'mpcACCsystem';
-    simDuration = 50;
-    Ts = 0.1;
+    simDuration = 100; %simulation duration
+    Ts = 0.1; %sample time
     timeGap = 1.4;
     lc_pos = 50;
     lc_vel = 25;
     ec_pos = 10;
     ec_vel = 20;
-    setVel = 30;
+    setVel = 30; %maximum velocity attainable
     assignin('base', 'default_safeD', default_safeD);
     assignin('base', 'model', model);
     assignin('base', 'simDuration', simDuration);
@@ -30,9 +30,9 @@ function main
     handles.acc_plot = axes('Parent', handles.figure, 'Position', [0.4, 0.05, 0.5, 0.25], 'XLim', [0, 100]);
     handles.knob_vel = uiknob(handles.figure, 'Position', [100, 700, 100, 100], 'ValueChangedFcn', @(knob_vel, event) changeVel(knob_vel, handles));
     handles.knob_dist = uiknob(handles.figure, 'Position', [300, 700, 100, 100], 'ValueChangedFcn', @(knob_dist, event) changeDist(knob_dist, handles));
-    handles.knob_vel.Limits = [0 100]; % For Cruising Speed knob
+    handles.knob_vel.Limits = [0 40]; % For Cruising Speed knob
     handles.knob_vel.Value = handles.velocity;
-    handles.knob_dist.Limits = [0 100]; % For Safe Distance knob
+    handles.knob_dist.Limits = [0 60]; % For Safe Distance knob
     handles.knob_dist.Value = handles.safeDistance;
     handles.speedLabel = uicontrol('Parent', handles.figure,'Style', 'text', 'Position', [100, 600, 100, 100], 'String', 'Set Crusing Speed');
     handles.speedLabel = uicontrol('Parent', handles.figure,'Style', 'text', 'Position', [300, 600, 100, 100], 'String', 'Set Safe Distance');
@@ -60,8 +60,8 @@ function simulate(velocity, acc_plot, vel_plot, safeD_plot, safeDistance)
     %Ts = evalin('base', 'Ts');
     timeGap = evalin('base', 'timeGap');
     %lc_pos = evalin('base', 'lc_pos');
-    assignin('base', 'ec_vel', velocity);
-    assignin('base', 'default_safeD', safeDistance);
+    %assignin('base', 'ec_vel', velocity);
+    %assignin('base', 'default_safeD', safeDistance);
     %ec_vel = evalin('base', 'ec_vel');
     %ec_pos = evalin('base', 'ec_pos');
     setVel = evalin('base', 'setVel');
