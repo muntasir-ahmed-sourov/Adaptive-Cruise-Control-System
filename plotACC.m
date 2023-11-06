@@ -23,13 +23,12 @@ function plotACC(logsout, default_safeD, timeGap, setVel, acc_plot, vel_plot, di
     setVel_data = setVel * ones(size(time));
     relativeD_data = relativeD.Values.Data;
     safeD_data = safeD;
-    plot(acc_plot, time, ec_acc_data, '.', 'Color', 'r', 'MarkerSize', 5);
-    plot(acc_plot, time, lc_acc_data, '.', 'Color', 'b', 'MarkerSize', 5);
-    plot(vel_plot, time, ec_vel_data, '.', 'Color', 'r', 'MarkerSize', 5);
-    plot(vel_plot, time, lc_vel_data, '.', 'Color', 'b', 'MarkerSize', 5);
-    plot(dist_plot, time, relativeD_data, '.', 'Color', 'r', 'MarkerSize', 5);
-    plot(dist_plot, time, safeD_data, '.', 'Color', 'b', 'MarkerSize', 5);
-    %plot(plotAxes, time, setVel_data, '.', 'Color', 'g', 'MarkerSize', 5);
+    plot(acc_plot, ec_acc.Values.time,ec_acc_data,'r',...
+        lc_acc.Values.time, lc_acc_data, 'b','LineWidth',2);
+    plot(vel_plot, time, ec_vel_data, '.', 'Color', 'r');
+    plot(vel_plot, time, lc_vel_data, '.', 'Color', 'b');
+    plot(dist_plot, time, relativeD_data, '.', 'Color', 'r');
+    plot(dist_plot, time, safeD_data, '.', 'Color', 'b');  
     grid(acc_plot, 'on');
     ylim(acc_plot, [-3, 2]); % y-axis limit from -10 to 10
     legend(acc_plot, 'ego', 'lead', 'set', 'location', 'SouthEast');

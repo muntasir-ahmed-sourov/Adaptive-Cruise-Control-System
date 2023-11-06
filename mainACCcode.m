@@ -1,7 +1,7 @@
 function main
     clc;
     clearvars;
-    default_safeD = 15;
+    default_safeD = 10;
     model = 'mpcACCsystem';
     simDuration = 100; %simulation duration
     Ts = 0.1; %sample time
