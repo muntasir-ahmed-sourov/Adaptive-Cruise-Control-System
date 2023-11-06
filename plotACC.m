@@ -37,13 +37,13 @@ function plotACC(logsout, default_safeD, timeGap, setVel, acc_plot, vel_plot, di
     xlabel(acc_plot, 'time (sec)');
     ylabel(acc_plot, '$m/s^2$', 'Interpreter', 'latex');
     grid(vel_plot, 'on');
-    ylim(vel_plot, [0, 35]); % y-axis limit from 0 to 100
+    ylim(vel_plot, [15, 35]); % y-axis limit from 0 to 100
     legend(vel_plot, 'ego', 'lead', 'set', 'location', 'SouthEast');
     title(vel_plot, 'Velocity');
     xlabel(vel_plot, 'time (sec)');
     ylabel(vel_plot, '$m/s$', 'Interpreter', 'latex');
     grid(dist_plot, 'on');
-    ylim(dist_plot, [20, 80]); % y-axis limit from 0 to 100
+    ylim(dist_plot, [35, 65]); % y-axis limit from 0 to 100
     legend(dist_plot, 'ego', 'lead', 'set', 'location', 'SouthEast');
     title(dist_plot, 'Distance');
     xlabel(dist_plot, 'time (sec)');
