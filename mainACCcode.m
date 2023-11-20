@@ -1,7 +1,7 @@
 function main
     clc;
     clearvars;
-    default_safeD = 15;
+    default_safeD = 10;
     model = 'mpcACCsystem';
     simDuration = 100; %simulation duration
     Ts = 0.1; %sample time
@@ -30,9 +30,9 @@ function main
     handles.acc_plot = axes('Parent', handles.figure, 'Position', [0.4, 0.05, 0.5, 0.25], 'XLim', [0, 100]);
     handles.knob_vel = uiknob(handles.figure, 'Position', [100, 700, 100, 100], 'ValueChangedFcn', @(knob_vel, event) changeVel(knob_vel, handles));
     handles.knob_dist = uiknob(handles.figure, 'Position', [300, 700, 100, 100], 'ValueChangedFcn', @(knob_dist, event) changeDist(knob_dist, handles));
-    handles.knob_vel.Limits = [0 40]; % For Cruising Speed knob
+    handles.knob_vel.Limits = [0 100]; % For Cruising Speed knob
     handles.knob_vel.Value = handles.velocity;
-    handles.knob_dist.Limits = [0 60]; % For Safe Distance knob
+    handles.knob_dist.Limits = [0 100]; % For Safe Distance knob
     handles.knob_dist.Value = handles.safeDistance;
     handles.speedLabel = uicontrol('Parent', handles.figure,'Style', 'text', 'Position', [100, 600, 100, 100], 'String', 'Set Crusing Speed');
     handles.speedLabel = uicontrol('Parent', handles.figure,'Style', 'text', 'Position', [300, 600, 100, 100], 'String', 'Set Safe Distance');

@@ -23,13 +23,12 @@ function plotACC(logsout, default_safeD, timeGap, setVel, acc_plot, vel_plot, di
     setVel_data = setVel * ones(size(time));
     relativeD_data = relativeD.Values.Data;
     safeD_data = safeD;
-    plot(acc_plot, time, ec_acc_data, '.', 'Color', 'r', 'MarkerSize', 5);
-    plot(acc_plot, time, lc_acc_data, '.', 'Color', 'b', 'MarkerSize', 5);
-    plot(vel_plot, time, ec_vel_data, '.', 'Color', 'r', 'MarkerSize', 5);
-    plot(vel_plot, time, lc_vel_data, '.', 'Color', 'b', 'MarkerSize', 5);
-    plot(dist_plot, time, relativeD_data, '.', 'Color', 'r', 'MarkerSize', 5);
-    plot(dist_plot, time, safeD_data, '.', 'Color', 'b', 'MarkerSize', 5);
-    %plot(plotAxes, time, setVel_data, '.', 'Color', 'g', 'MarkerSize', 5);
+    plot(acc_plot, ec_acc.Values.time,ec_acc_data,'r',...
+        lc_acc.Values.time, lc_acc_data, 'b','LineWidth',2);
+    plot(vel_plot, time, ec_vel_data, '.', 'Color', 'r');
+    plot(vel_plot, time, lc_vel_data, '.', 'Color', 'b');
+    plot(dist_plot, time, relativeD_data, '.', 'Color', 'r');
+    plot(dist_plot, time, safeD_data, '.', 'Color', 'b');  
     grid(acc_plot, 'on');
     ylim(acc_plot, [-3, 2]); % y-axis limit from -10 to 10
     legend(acc_plot, 'ego', 'lead', 'set', 'location', 'SouthEast');
@@ -37,13 +36,13 @@ function plotACC(logsout, default_safeD, timeGap, setVel, acc_plot, vel_plot, di
     xlabel(acc_plot, 'time (sec)');
     ylabel(acc_plot, '$m/s^2$', 'Interpreter', 'latex');
     grid(vel_plot, 'on');
-    ylim(vel_plot, [0, 35]); % y-axis limit from 0 to 100
+    ylim(vel_plot, [15, 35]); % y-axis limit from 0 to 100
     legend(vel_plot, 'ego', 'lead', 'set', 'location', 'SouthEast');
     title(vel_plot, 'Velocity');
     xlabel(vel_plot, 'time (sec)');
     ylabel(vel_plot, '$m/s$', 'Interpreter', 'latex');
     grid(dist_plot, 'on');
-    ylim(dist_plot, [20, 80]); % y-axis limit from 0 to 100
+    ylim(dist_plot, [35, 65]); % y-axis limit from 0 to 100
     legend(dist_plot, 'ego', 'lead', 'set', 'location', 'SouthEast');
     title(dist_plot, 'Distance');
     xlabel(dist_plot, 'time (sec)');
