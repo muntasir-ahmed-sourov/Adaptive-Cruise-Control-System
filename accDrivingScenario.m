@@ -213,7 +213,7 @@ egoVehicle = vehicle(scenario, ...
     'Mesh', driving.scenario.carMesh);
 
 % Add the non-ego actors
-x = vehicle(scenario, ...
+lead_car = vehicle(scenario, ...
     'ClassID', 1, ...
     'Mesh', driving.scenario.carMesh);
 waypoints = [115.53142278746 -749.167418322111 0;
@@ -398,6 +398,6 @@ speed = [8;8;8;8;8;8;8;8;8;8;8;8;8;8;8;8;8;
     15;15;15;15;15;15;15;15;15;15;15;15;15;15;15;15;15;
     8;8;8;8;8;8;8;8;8;8;8;8;8;8;8;8;8;8];
 
-trajectory(x, waypoints, speed);
+trajectory(lead_car, waypoints, speed);
 
 

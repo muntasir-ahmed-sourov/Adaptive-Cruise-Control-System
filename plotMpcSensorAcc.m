@@ -1,14 +1,5 @@
 function helperPlotACCResults(logsout,default_spacing,time_gap)
-%helperPlotACCResults A helper function for plotting the results of the ACC
-% demo.
-%   This is a helper function for example purposes and may be removed or
-%   modified in the future.
-%
-% The function assumes that the demo outputs the Simulink log, logsout,
-% containing the following elements: acceleration, ego_velocity,
-% driver_set_velocity and relative_distance.
 
-% Copyright 2017 The MathWorks, Inc.
 
 %% Get the data from simulation
 acceleration = logsout.getElement('acceleration'); % acceleration of ego car

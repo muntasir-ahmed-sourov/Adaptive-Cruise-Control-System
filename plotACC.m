@@ -23,6 +23,7 @@ function plotACC(logsout, default_safeD, timeGap, setVel, acc_plot, vel_plot, di
     setVel_data = setVel * ones(size(time));
     relativeD_data = relativeD.Values.Data;
     safeD_data = safeD;
+    
     plot(acc_plot, ec_acc.Values.time,ec_acc_data,'r',...
         lc_acc.Values.time, lc_acc_data, 'b','LineWidth',2);
     plot(vel_plot, time, ec_vel_data, '.', 'Color', 'r');
