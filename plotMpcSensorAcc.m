@@ -1,9 +1,11 @@
-function helperPlotACCResults(logsout,default_spacing,time_gap)
+function plotMpcSensorAcc(logsout,default_spacing,time_gap)
 
 
 %% Get the data from simulation
 acceleration = logsout.getElement('acceleration'); % acceleration of ego car
 ego_velocity = logsout.getElement('ego_velocity'); % velocity of host car
+lead_car_velocity = logsout.getElement('lead_car_velocity'); % velocity of the lead car
+lc_vel = lead_car_velocity.Values.Data + ego_velocity.Values.Data;
 driver_set_velocity = logsout.getElement('driver_set_velocity'); % driver-set velocity
 relative_distance = logsout.getElement('relative_distance'); % actual distance
 safe_distance = default_spacing + time_gap*ego_velocity.Values.Data; % safe distance
@@ -14,8 +16,10 @@ subplot(3,1,1);
 plot(ego_velocity.Values.time,ego_velocity.Values.Data,'r');grid on;
 hold on; 
 plot(driver_set_velocity.Values.time,driver_set_velocity.Values.Data,'k--');
-ylim([15,25]);
-legend('ego','set','location','NorthEast');
+hold on;
+plot(lead_car_velocity.Values.time,lc_vel,'b');
+ylim([0,25]);
+legend('ego','set','lead','location','NorthEast');
 title('Velocity')
 xlabel('time (sec)')
 ylabel('m/s')
