@@ -17,8 +17,8 @@ plot(ego_velocity.Values.time,ego_velocity.Values.Data,'r');grid on;
 hold on; 
 plot(driver_set_velocity.Values.time,driver_set_velocity.Values.Data,'k--');
 hold on;
-plot(lead_car_velocity.Values.time,lc_vel,'b');
-ylim([0,25]);
+plot(ego_velocity.Values.time,lc_vel,'b');
+ylim([14,38]);
 legend('ego','set','lead','location','NorthEast');
 title('Velocity')
 xlabel('time (sec)')
