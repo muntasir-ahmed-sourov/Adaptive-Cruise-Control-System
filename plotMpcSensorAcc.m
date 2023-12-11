@@ -18,7 +18,7 @@ hold on;
 plot(driver_set_velocity.Values.time,driver_set_velocity.Values.Data,'k--');
 hold on;
 plot(ego_velocity.Values.time,lc_vel,'b');
-ylim([14,38]);
+ylim([0,38]);
 legend('ego','set','lead','location','NorthEast');
 title('Velocity')
 xlabel('time (sec)')
@@ -35,7 +35,7 @@ ylabel('m')
 % acceleration
 subplot(3,1,3);
 plot(acceleration.Values.time,acceleration.Values.Data,'r');grid on;
-ylim([-3.2,2.2]);
+ylim([-3.2,3.2]);
 legend('ego','location','NorthEast');
 title('Acceleration')
 xlabel('time (sec)')
