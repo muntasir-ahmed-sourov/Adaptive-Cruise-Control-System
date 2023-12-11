@@ -18,7 +18,7 @@ Cf      = 19000;
 Cr      = 33000;    
 tau     = 0.5;
 
-v0_ego = 20;  % Initial speed of the ego car           (m/s)
+v0_ego = 2;  % Initial speed of the ego car           (m/s)
 x0_ego = 0;   % Initial x position of ego car          (m)
 y0_ego = -R+2.2; % Initial y position of ego car          (m)
 egoID = egoVehicle.ActorID;
