@@ -18,29 +18,24 @@ Cf      = 19000;
 Cr      = 33000;    
 tau     = 0.5;
 
-v0_ego = 15;  % Initial speed of the ego car           (m/s)
+v0_ego = 2;  % Initial speed of the ego car           (m/s)
 x0_ego = 0;   % Initial x position of ego car          (m)
 y0_ego = -R+2.2; % Initial y position of ego car          (m)
 egoID = egoVehicle.ActorID;
 G = accLinearModel(m,Iz,lf,lr,Cf,Cr,tau,v0_ego);     
 
-v_set           = 21.5; % set velocity
+v_set           = 30; % set velocity
 time_gap        = 1.5; 
 default_spacing = 10;    % safe distance
 verr_gain       = 0.5;  
 xerr_gain       = 0.2;  
 vx_gain         = 0.4;  
-max_ac          = 2;    
+max_ac          = 3;    
 min_ac          = -3;   
 driver_P        = 0.2;  
 driver_I        = 0.1; 
 yawerr_gain     = 2;    
 controller_type = 2;    
-
-hasMPCLicense = license('checkout','MPC_Toolbox');
-if ~hasMPCLicense
-   disp('Note: a license to the Model Predictive Control product is required to run the MPC controller variant (controller_type == 2) but no license was not detected.')
-end
 
 modelName = 'mpcSensorFusionACCModel';
 wasModelLoaded = bdIsLoaded(modelName);
