@@ -16,10 +16,8 @@ assignin('base','PredictionHorizon',30); % Prediction horizon
 % Set random seed to ensure reproducibility.
 rng(0);
 
-% Call scenario function to create drivingScenario and egoCar objects
+
 [scenario, egoVehicle] = accDrivingScenario();
-%[scenario, egoVehicle] = curvedRoadScenario;
-%[scenario,egoVehicle] = drivingScenarioMapDesign;
 assignin('base','scenario',scenario);
 assignin('base','egoID',egoVehicle.ActorID);
 
@@ -42,12 +40,9 @@ assignin('base','yaw0_ego',-yaw0_ego);
 
 v_set = 30;  % ACC set speed (m/s)
 
-%env = 3;
+
 assignin('base','v_set',v_set);
-%setFriction(env)
-%assignin('base','env',3)
-%assignin('base','friction',1)
-% Define a simulation stop time
+
 
 %% Tracking and Sensor Fusion Parameters                        Units
 assignin('base','assigThresh',50);    % Tracker assignment threshold          (N/A)
@@ -57,9 +52,7 @@ assignin('base','numCoasts',5);       % Number of track coasting steps        (N
 assignin('base','numTracks',100);     % Maximum number of tracks              (N/A)
 assignin('base','numSensors',2);      % Maximum number of sensors             (N/A)
 
-% Position and velocity selectors from track state
-% The filter initialization function used in this example is initcvekf, which 
-% defines a state that is: [x;vx;y;vy;z;vz]. 
+ 
 assignin('base','posSelector',[1,0,0,0,0,0; 0,0,1,0,0,0]); % Position selector   (N/A)
 assignin('base','velSelector',[0,1,0,0,0,0; 0,0,0,1,0,0]); % Velocity selector   (N/A)
 
@@ -102,8 +95,3 @@ else
     blk=find_system(refModel,'System','multiObjectTracker');
     multiObjectTracker.createBus(blk{1});
 end
-
-%% Code generation
-% To generate code, uncomment the following commands.
-% refModel = 'ACCREFMODEL';
-% rtwbuild(refModel)

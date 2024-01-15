@@ -68,7 +68,7 @@ waypoints = [
     ];
 
     
-speed = [30;25;15;0;];
+speed = [30;30;30;0;];
 trajectory(leadCar, waypoints, speed);
 
 

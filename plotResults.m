@@ -27,6 +27,7 @@ hold on
 plot(ego_velocity.Values.time,lead_velocity,'b')
 hold on
 xlim([0,tmax])
+ylim([0,35])
 grid on
 legend('ego velocity','set velocity','lead velocity','location','northeast')
 title('Velocity')

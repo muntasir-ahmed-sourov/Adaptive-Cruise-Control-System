@@ -49,7 +49,7 @@ egoVehicle = vehicle(scenario, ...
 waypoints = [ 
     -500 -1000 0;
     -500 -700 0;];
-speed = 25;
+speed = 20;
 trajectory(egoVehicle, waypoints, speed);
 % Add the non-ego actors
 

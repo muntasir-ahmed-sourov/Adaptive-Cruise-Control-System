@@ -25,7 +25,7 @@ assignin('base','x0_ego',x0_ego);
 assignin('base','y0_ego',-y0_ego);
 assignin('base','yaw0_ego',-yaw0_ego);
 
-v_set = 25;  % set velocity (m/s)
+v_set = 27;  % set velocity (m/s)
 assignin('base','v_set',v_set);
 
 assignin('base','assigThresh',50);   
