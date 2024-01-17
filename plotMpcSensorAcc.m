@@ -1,30 +1,39 @@
-function plotMpcSensorAcc(logsout,default_spacing,time_gap)
+function plotMpcSensorACC(logsout,time_gap,default_spacing)
 
 
-ec_acc = logsout.getElement('acceleration'); % acceleration of ego car
-ec_vel = logsout.getElement('ego_velocity'); % velocity of host car
-set_vel = logsout.getElement('driver_set_velocity'); % driver-set velocity
+ego_acceleration = logsout.getElement('acceleration'); % acceleration of ego car
+ego_velocity = logsout.getElement('ego_velocity'); % velocity of host car
+driver_set_velocity = logsout.getElement('driver_set_velocity'); % driver-set velocity
+
 relative_distance = logsout.getElement('relative_distance'); % actual distance
 relative_velocity = logsout.getElement('relative_velocity'); % relative velocity
-safe_distance = (ec_vel.Values.Data*time_gap) + default_spacing;
-lc_vel = relative_velocity.Values.Data + ec_vel.Values.Data; % lead velocity
-tmax = ec_vel.Values.time(end);
+safe_distance = (ego_velocity.Values.Data*time_gap) + default_spacing;
+
+lead_velocity = relative_velocity.Values.Data + ego_velocity.Values.Data; % lead velocity
+
+
+tmax = ego_velocity.Values.time(end);
+
+
 %% Plot the spacing control results
-figure('Name','Spacing Control Performance','position',[100 100 720 600])
+figure('Name','Plots','position',[100 100 720 600])
+
 % velocity
 subplot(3,1,1)
-plot(ec_vel.Values.time,ec_vel.Values.Data,'r')
+plot(ego_velocity.Values.time,ego_velocity.Values.Data,'r')
 hold on;
-plot(set_vel.Values.time,set_vel.Values.Data,'k--')
+plot(driver_set_velocity.Values.time,driver_set_velocity.Values.Data,'k--')
 hold on
-plot(ec_vel.Values.time,lc_vel,'b')
+plot(ego_velocity.Values.time,lead_velocity,'b')
 hold on
 xlim([0,tmax])
+ylim([0,35])
 grid on
 legend('ego velocity','set velocity','lead velocity','location','northeast')
 title('Velocity')
 xlabel('time (sec)')
 ylabel('m/s')
+
 % distance
 subplot(3,1,2)
 plot(relative_distance.Values.time,relative_distance.Values.Data,'r')
@@ -36,13 +45,14 @@ legend('actual distance','safe distance','location','NorthEast')
 title('Distance')
 xlabel('time (sec)')
 ylabel('m')
+
 % acceleration
 subplot(3,1,3)
-plot(ec_acc.Values.time,ec_acc.Values.Data,'r')
+plot(ego_acceleration.Values.time,ego_acceleration.Values.Data,'r')
 grid on
 xlim([0,tmax])
 ylim([-10,10])
-legend('ego accleration','location','NorthEast')
+legend('ego acceleration','location','NorthEast')
 title('Acceleration')
 xlabel('time (sec)')
 ylabel('$m/s^2$','Interpreter','latex')

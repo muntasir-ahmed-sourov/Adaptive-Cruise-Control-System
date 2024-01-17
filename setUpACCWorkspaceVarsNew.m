@@ -68,7 +68,7 @@ assignin('base','tau',0.5);     % time constant for longitudinal dynamics       
 
 %% Bus Creation
 % Load the Simulink model
-modelName = 'Copy_2_of_mpcSensorFusionACCModel';
+modelName = 'mpcSensorFusionACCModel';
 wasModelLoaded = bdIsLoaded(modelName);
 if ~wasModelLoaded
     load_system(modelName)
@@ -84,7 +84,7 @@ blk=find_system(modelName,'System','drivingRadarDataGenerator');
 drivingRadarDataGenerator.createBus(blk{1});
 
 % Create the bus of tracks (output from referenced model)
-refModel = 'Copy_of_mpcACCWithSensorFusion';
+refModel = 'mpcACCWithSensorFusion';
 wasReModelLoaded = bdIsLoaded(refModel);
 if ~wasReModelLoaded
     load_system(refModel)

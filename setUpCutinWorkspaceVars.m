@@ -44,7 +44,7 @@ assignin('base','Cf',19000);    % Cornering stiffness of front tires            
 assignin('base','Cr',33000);    % Cornering stiffness of rear tires              (N/rad)
 assignin('base','tau',0.5);     % time constant for longitudinal dynamics        (1/s/(tau*s+1))
 
-modelName = 'Copy_2_of_mpcSensorFusionACCModel';
+modelName = 'mpcSensorFusionACCModel';
 wasModelLoaded = bdIsLoaded(modelName);
 if ~wasModelLoaded
     load_system(modelName)
@@ -57,7 +57,7 @@ visionDetectionGenerator.createBus(blk{1});
 blk=find_system(modelName,'System','drivingRadarDataGenerator');
 drivingRadarDataGenerator.createBus(blk{1});
 
-refModel = 'Copy_of_mpcACCWithSensorFusion';
+refModel = 'mpcACCWithSensorFusion';
 wasReModelLoaded = bdIsLoaded(refModel);
 if ~wasReModelLoaded
     load_system(refModel)
