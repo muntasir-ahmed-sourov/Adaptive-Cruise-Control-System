@@ -1,7 +1,7 @@
 function plotMpcSensorACC(logsout,time_gap,default_spacing)
 
 
-ego_acceleration = logsout.getElement('acceleration'); % acceleration of ego car
+ego_acceleration = logsout.getElement('ego_acceleration'); % acceleration of ego car
 ego_velocity = logsout.getElement('ego_velocity'); % velocity of host car
 driver_set_velocity = logsout.getElement('driver_set_velocity'); % driver-set velocity
 

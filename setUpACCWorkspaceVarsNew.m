@@ -5,21 +5,21 @@ assignin('base','Ts',0.1);               % Simulation sample time  (s)
 %% Path following Controller Parameters
 assignin('base','time_gap',1.5);         % time gap               (s)
 assignin('base','default_spacing',10);   % default spacing        (m)
-assignin('base','max_ac',2);             % Maximum acceleration   (m/s^2)
-assignin('base','min_ac',-3);            % Minimum acceleration   (m/s^2)
+assignin('base','max_ac',4);             % Maximum acceleration   (m/s^2)
+assignin('base','min_ac',-6);            % Minimum acceleration   (m/s^2)
 assignin('base','max_steer',0.26);       % Maximum steering       (rad)
 assignin('base','min_steer',-0.26);      % Minimum steering       (rad) 
 assignin('base','PredictionHorizon',30); % Prediction horizon     
-
+assignin("base", 'stopTime', 73);
 
 %% Scenario parameters
 % Set random seed to ensure reproducibility.
 rng(0);
 
 
-[scenario, egoVehicle] = accDrivingScenario();
+[scenario, egoVehicle] = accRoadrunnerStraightScenario();
 assignin('base','scenario',scenario);
-assignin('base','egoID',egoVehicle.ActorID);
+assignin('base','egoCarID',egoVehicle.ActorID);
 
 
 assignin('base','h',10);
@@ -68,7 +68,7 @@ assignin('base','tau',0.5);     % time constant for longitudinal dynamics       
 
 %% Bus Creation
 % Load the Simulink model
-modelName = 'mpcSensorFusionACCModel';
+modelName = 'accMainSensorFusionModel';
 wasModelLoaded = bdIsLoaded(modelName);
 if ~wasModelLoaded
     load_system(modelName)
@@ -84,7 +84,7 @@ blk=find_system(modelName,'System','drivingRadarDataGenerator');
 drivingRadarDataGenerator.createBus(blk{1});
 
 % Create the bus of tracks (output from referenced model)
-refModel = 'mpcACCWithSensorFusion';
+refModel = 'accRefSensorFusionModel';
 wasReModelLoaded = bdIsLoaded(refModel);
 if ~wasReModelLoaded
     load_system(refModel)

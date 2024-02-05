@@ -3,16 +3,17 @@ function setUpCutoutWorkspaceVars(varargin)
 assignin('base','Ts',0.1);               
 assignin('base','time_gap',1.5);        
 assignin('base','default_spacing',10);   
-assignin('base','max_ac',2);             
-assignin('base','min_ac',-300);          
+assignin('base','max_ac',4);             
+assignin('base','min_ac',-6);          
 assignin('base','max_steer',0.26);       
 assignin('base','min_steer',-0.26);      
-assignin('base','PredictionHorizon',30);  
+assignin('base','PredictionHorizon',30);
+assignin("base", 'stopTime', 67);
 rng(0);
 
-[scenario, egoVehicle] = accCutoutScenario();
+[scenario, egoVehicle] = accRoadrunnerCutoutScenario();
 assignin('base','scenario',scenario);
-assignin('base','egoID',egoVehicle.ActorID);
+assignin('base','egoCarID',egoVehicle.ActorID);
 assignin('base','h',10);
 
 v0_ego = norm(egoVehicle.Velocity);         % Initial speed of the ego car       (m/s)
@@ -25,7 +26,7 @@ assignin('base','x0_ego',x0_ego);
 assignin('base','y0_ego',-y0_ego);
 assignin('base','yaw0_ego',-yaw0_ego);
 
-v_set = 27;  % set velocity (m/s)
+v_set = 30;  % set velocity (m/s)
 assignin('base','v_set',v_set);
 
 assignin('base','assigThresh',50);    
@@ -46,7 +47,7 @@ assignin('base','Cf',19000);    % Cornering stiffness of front tires            
 assignin('base','Cr',33000);    % Cornering stiffness of rear tires              (N/rad)
 assignin('base','tau',0.5);     % time constant for longitudinal dynamics        (1/s/(tau*s+1))
 
-modelName = 'mpcSensorFusionACCModel';
+modelName = 'accMainSensorFusionModel';
 wasModelLoaded = bdIsLoaded(modelName);
 if ~wasModelLoaded
     load_system(modelName)
@@ -59,7 +60,7 @@ visionDetectionGenerator.createBus(blk{1});
 blk=find_system(modelName,'System','drivingRadarDataGenerator');
 drivingRadarDataGenerator.createBus(blk{1});
 
-refModel = 'mpcACCWithSensorFusion';
+refModel = 'accRefSensorFusionModel';
 wasReModelLoaded = bdIsLoaded(refModel);
 if ~wasReModelLoaded
     load_system(refModel)
