@@ -1,7 +1,7 @@
 
-sim('mpcSensorFusionACCModel'); %Simulate to end of scenario
+sim('accMainSensorFusionModel'); %Simulate to end of scenario
 
-plotMpcSensorAcc(logsout,default_spacing,time_gap)
+plotMpcSensorACC(logsout,time_gap,default_spacing)
 
 
 
